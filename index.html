@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream English School — Destrave seus sonhos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Raleway:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #3B4CF5; --purple: #7B45C8; --violet: #9B59D8;
+    --grad: linear-gradient(135deg, #3B4CF5 0%, #7B45C8 50%, #9B59D8 100%);
+    --gold: #FFD166; --midnight: #0D0D1A;
+    --sky: #EEF0FF; --sky-2: #F8F8FF;
+    --white: #FFFFFF; --text: #1A1A2E;
+    --textmid: #4A4A6A; --textlight: #8888AA;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 60px;
+    background: rgba(13,13,26,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 4px; text-decoration: none; }
+  .nav-logo img { height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(123,69,200,0.6)); }
+  .nav-logo-text { display: flex; flex-direction: column; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .nav-school { font-family: 'Raleway', sans-serif; font-size: 7px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: white; }
+  .nav-cta { background: var(--grad); color: white; font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; padding: 10px 24px; border-radius: 30px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,76,245,0.35); transition: opacity 0.2s, transform 0.2s; }
+  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: var(--midnight); position: relative; overflow: hidden; display: flex; align-items: center; padding: 120px 60px 80px; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 10% 90%, rgba(59,76,245,0.35) 0%, transparent 55%), radial-gradient(circle at 90% 10%, rgba(123,69,200,0.3) 0%, transparent 55%), radial-gradient(circle at 50% 50%, rgba(155,89,216,0.12) 0%, transparent 50%); }
+  .hero-dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 40px 40px; }
+  .hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,209,102,0.1); border: 1px solid rgba(255,209,102,0.3); border-radius: 30px; padding: 6px 16px; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--gold); margin-bottom: 32px; }
+  .hero-h1 { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: white; line-height: 1.1; margin-bottom: 20px; }
+  .hero-h1 em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-desc { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 40px; max-width: 420px; }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; }
+  .btn-primary-lg { background: var(--grad); color: white; font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 800; padding: 16px 36px; border-radius: 14px; text-decoration: none; letter-spacing: 0.5px; box-shadow: 0 8px 30px rgba(59,76,245,0.4); border: none; cursor: pointer; transition: transform 0.2s; display: inline-block; }
+  .btn-primary-lg:hover { transform: translateY(-2px); }
+  .btn-ghost-lg { color: rgba(255,255,255,0.7); font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 2px; transition: color 0.2s; }
+  .btn-ghost-lg:hover { color: white; }
+  .hero-stats { display: flex; gap: 36px; margin-top: 52px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 4px; }
+  .hero-stat-label { font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-logo-img { width: 340px; height: auto; object-fit: contain; filter: drop-shadow(0 0 60px rgba(123,69,200,0.7)) drop-shadow(0 0 120px rgba(59,76,245,0.4)); animation: float 4s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+  .hero-ring { position: absolute; width: 340px; height: 340px; border: 1px solid rgba(59,76,245,0.2); border-radius: 50%; animation: spin 20s linear infinite; }
+  .hero-ring-2 { width: 260px; height: 260px; border-color: rgba(123,69,200,0.15); animation-direction: reverse; animation-duration: 15s; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-ring-dot { position: absolute; width: 10px; height: 10px; background: var(--grad); border-radius: 50%; top: -5px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 15px rgba(59,76,245,0.8); }
+
+  /* SOCIAL PROOF */
+  .social-proof { background: var(--sky); padding: 36px 60px; display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; border-bottom: 1px solid rgba(59,76,245,0.08); }
+  .proof-item { display: flex; align-items: center; gap: 12px; }
+  .proof-icon { font-size: 22px; }
+  .proof-text { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); }
+  .proof-text span { display: block; font-weight: 400; color: var(--textmid); font-size: 12px; margin-top: 1px; }
+
+  /* SECTIONS */
+  .section { padding: 100px 60px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-family: 'Raleway', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--purple); display: block; margin-bottom: 12px; }
+  .eyebrow-gold { color: var(--gold); }
+  .section-h2 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+  .section-h2-light { color: white; }
+  .section-h2 em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .section-lead { font-size: 16px; color: var(--textmid); line-height: 1.8; max-width: 520px; margin-bottom: 60px; }
+  .section-lead-light { color: rgba(255,255,255,0.6); }
+
+  /* JOURNEY MAP */
+  .journey { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 64px; padding-top: 80px; }
+  .journey-line { position: absolute; top: 32px; left: calc(12.5%); right: calc(12.5%); height: 2px; background: var(--grad); opacity: 0.25; z-index: 0; }
+  .journey-step { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+  .journey-node { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 28px; }
+  .journey-node-label { font-family: 'Raleway', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--textlight); white-space: nowrap; }
+  .journey-node-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--white); border: 2px solid rgba(59,76,245,0.3); position: relative; }
+  .journey-node-dot::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--grad); opacity: 0.5; }
+  .journey-node-start .journey-node-dot { border-color: var(--blue); }
+  .journey-node-start .journey-node-dot::after { opacity: 1; }
+  .journey-node-end .journey-node-dot { width: 26px; height: 26px; border: 2px solid var(--purple); box-shadow: 0 0 20px rgba(123,69,200,0.3); }
+  .journey-node-end .journey-node-dot::after { opacity: 1; background: var(--grad); inset: 2px; }
+  .journey-card { background: var(--white); border: 1px solid rgba(59,76,245,0.1); border-radius: 16px; padding: 20px; width: 90%; text-align: left; }
+  .journey-card-highlight { border-color: rgba(123,69,200,0.3); background: var(--sky); }
+  .journey-card-tag { font-family: 'Raleway', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); display: block; margin-bottom: 6px; }
+  .journey-card-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+  .journey-card-desc { font-size: 12px; color: var(--textmid); line-height: 1.8; }
+  .journey-cta { text-align: center; }
+  .journey-cta-sub { font-family: 'Raleway', sans-serif; font-size: 12px; color: var(--textlight); margin-top: 14px; }
+
+  /* MÉTODO */
+  .method-section { background: var(--midnight); }
+  .method-inner { max-width: 1100px; margin: 0 auto; }
+  .method-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 64px; }
+  .method-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .method-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 28px; position: relative; overflow: hidden; transition: background 0.3s; }
+  .method-step:hover { background: rgba(255,255,255,0.07); }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.15; position: absolute; top: 10px; right: 16px; line-height: 1; }
+  .step-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .step-title { font-family: 'Raleway', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* DEPOIMENTOS */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .testimonial-card { background: white; border-radius: 20px; padding: 32px; box-shadow: 0 4px 30px rgba(0,0,0,0.06); border: 1px solid rgba(59,76,245,0.07); position: relative; }
+  .testimonial-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 80px; line-height: 0.8; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.15; position: absolute; top: 20px; right: 20px; }
+  .testimonial-stars { font-size: 14px; margin-bottom: 16px; color: var(--gold); letter-spacing: 2px; }
+  .testimonial-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: var(--text); line-height: 1.7; margin-bottom: 24px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar { width: 44px; height: 44px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .testimonial-name { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+  .testimonial-role { font-size: 12px; color: var(--textlight); }
+
+  /* CTA FINAL */
+  .cta-section { background: var(--grad); padding: 120px 60px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px; }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-logo { height: 100px; width: auto; object-fit: contain; filter: drop-shadow(0 0 30px rgba(255,255,255,0.3)) brightness(1.2); margin-bottom: 24px; }
+  .cta-h2 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: white; margin-bottom: 20px; line-height: 1.2; }
+  .cta-desc { font-size: 18px; color: rgba(255,255,255,0.8); max-width: 500px; margin: 0 auto 48px; line-height: 1.8; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; align-items: center; }
+  .btn-white { background: white; color: var(--purple); font-family: 'Raleway', sans-serif; font-size: 15px; font-weight: 800; padding: 16px 40px; border-radius: 14px; text-decoration: none; border: none; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.2); transition: transform 0.2s; display: inline-block; }
+  .btn-white:hover { transform: translateY(-2px); }
+  .btn-outline-white { color: white; font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 600; padding: 16px 32px; border-radius: 14px; text-decoration: none; border: 2px solid rgba(255,255,255,0.4); transition: background 0.2s; display: inline-block; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+  /* FOOTER */
+  footer { background: var(--midnight); padding: 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 24px; }
+  .footer-logo { height: 48px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(123,69,200,0.5)); }
+  .footer-tagline { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 6px; font-family: 'Raleway', sans-serif; font-style: italic; }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a { font-family: 'Raleway', sans-serif; font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Dream English School">
+    <div class="nav-logo-text">
+      <div class="nav-brand">Dream English School</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Quero me matricular</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">✦ Aulas 100% online · Foco em conversação</div>
+      <h1 class="hero-h1">
+        Destrave os seus<br>sonhos com o<br><em>poder da educação</em>
+      </h1>
+      <p class="hero-desc">
+        Inglês conversacional para adultos e profissionais que querem falar com confiança. Aulas ao vivo, 100% online, com professores que realmente se importam com o seu resultado.
+      </p>
+      <div class="hero-ctas">
+        <a href="#cursos" class="btn-primary-lg">Conhecer os cursos →</a>
+        <a href="#metodo" class="btn-ghost-lg">Como funciona?</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2.4k+</div>
+          <div class="hero-stat-label">Alunos formados</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Satisfação</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Online</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring"><div class="hero-ring-dot"></div></div>
+      <div class="hero-ring hero-ring-2"><div class="hero-ring-dot"></div></div>
+      <img src="logo.png" alt="Dream English School" class="hero-logo-img">
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="social-proof">
+  <div class="proof-item">
+    <span class="proof-icon">⭐</span>
+    <div class="proof-text">4.9 no Google<span>+800 avaliações</span></div>
+  </div>
+  <div class="proof-item">
+    <span class="proof-icon">🎓</span>
+    <div class="proof-text">Certificado Reconhecido<span>Internacionalmente</span></div>
+  </div>
+  <div class="proof-item">
+    <span class="proof-icon">🗣️</span>
+    <div class="proof-text">Foco em Conversação<span>Desde a 1ª aula</span></div>
+  </div>
+  <div class="proof-item">
+    <span class="proof-icon">💻</span>
+    <div class="proof-text">100% Online<span>De qualquer lugar do Brasil</span></div>
+  </div>
+</div>
+
+<!-- CURSOS -->
+<section class="section" id="cursos">
+  <div class="section-inner">
+    <span class="eyebrow">Nossos Cursos</span>
+    <h2 class="section-h2">Sua jornada até<br>a <em>fluência</em></h2>
+    <p class="section-lead">Não existe um plano único. Existe o seu ponto de partida e o seu destino. A gente traça o caminho junto.</p>
+
+    <!-- JOURNEY MAP -->
+    <div class="journey">
+      <div class="journey-line"></div>
+
+      <div class="journey-step">
+        <div class="journey-node journey-node-start">
+          <span class="journey-node-label">Onde você está</span>
+          <div class="journey-node-dot"></div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-card-tag">Ponto de partida</div>
+          <div class="journey-card-title">Diagnóstico gratuito</div>
+          <p class="journey-card-desc">Uma conversa de 20 minutos para entender seu nível real, sua rotina e o que você precisa dizer em inglês.</p>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-node">
+          <span class="journey-node-label">Primeiras semanas</span>
+          <div class="journey-node-dot"></div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-card-tag">Desbloqueio</div>
+          <div class="journey-card-title">Você começa a falar</div>
+          <p class="journey-card-desc">Conversação desde a aula 1. Pronuncia, vocabulário essencial e a confiança de abrir a boca sem travar.</p>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-node">
+          <span class="journey-node-label">Meses 2 a 4</span>
+          <div class="journey-node-dot"></div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-card-tag">Evolução</div>
+          <div class="journey-card-title">Inglês no seu mundo</div>
+          <p class="journey-card-desc">Reuniões, emails, viagens, apresentações. O inglês começa a aparecer onde você precisa, de forma natural.</p>
+        </div>
+      </div>
+
+      <div class="journey-step">
+        <div class="journey-node journey-node-end">
+          <span class="journey-node-label">Seu destino</span>
+          <div class="journey-node-dot"></div>
+        </div>
+        <div class="journey-card journey-card-highlight">
+          <div class="journey-card-tag" style="color:var(--gold);">Chegada</div>
+          <div class="journey-card-title">Fluência real</div>
+          <p class="journey-card-desc">Você pensa em inglês, responde sem pausar, e não lembra mais como era ter medo de falar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-cta">
+      <a href="#contato" class="btn-primary-lg" style="font-size:16px;padding:18px 48px;">Descubra seu nível e comece →</a>
+      <p class="journey-cta-sub">Diagnóstico gratuito e sem compromisso</p>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="section method-section" id="metodo">
+  <div class="method-inner">
+    <div class="method-header">
+      <div>
+        <span class="eyebrow eyebrow-gold">Nosso Método</span>
+        <h2 class="section-h2 section-h2-light">Como você chega<br>à <em>fluência</em></h2>
+      </div>
+      <p class="section-lead section-lead-light">
+        Conversação real desde o primeiro dia. Nada de gramática decorada sem contexto — você aprende falando, errando e evoluindo em um ambiente seguro e online.
+      </p>
+    </div>
+
+    <div class="method-steps">
+      <div class="method-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Diagnóstico Pessoal</div>
+        <p class="step-desc">Entendemos seu nível atual, sua rotina e seus objetivos para montar um plano de conversação sob medida.</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Conversação Desde o Dia 1</div>
+        <p class="step-desc">Você fala desde a primeira aula. Sem esperar "estar pronto" — a fluência vem com a prática real, não com a teoria.</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Aulas Ao Vivo Online</div>
+        <p class="step-desc">Aulas ao vivo pelo Zoom, com horários flexíveis. Estude de casa, do trabalho ou de onde estiver no Brasil.</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Feedback Contínuo</div>
+        <p class="step-desc">Correção em tempo real durante as aulas, relatório de progresso semanal e suporte por WhatsApp entre os encontros.</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">5</div>
+        <div class="step-title">Situações Reais</div>
+        <p class="step-desc">Simulamos reuniões, entrevistas, viagens e conversas do cotidiano para que o inglês seja útil fora da aula também.</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">6</div>
+        <div class="step-title">Certificação</div>
+        <p class="step-desc">Certificado de conclusão ao final do curso — um marco real na sua jornada e no seu currículo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section" id="depoimentos" style="background:var(--sky-2);">
+  <div class="section-inner">
+    <span class="eyebrow">Depoimentos</span>
+    <h2 class="section-h2">Sonhos que já foram<br><em>destrancados</em></h2>
+    <p class="section-lead">Histórias reais de alunos que passaram a se comunicar em inglês com confiança — 100% online.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Depois de 6 meses na Dream, consegui a promoção que esperava há 2 anos. O inglês em reuniões deixou de ser um obstáculo."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👩</div>
+          <div>
+            <div class="testimonial-name">Ana Carolina S.</div>
+            <div class="testimonial-role">Gerente de Projetos · São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Participei de uma call com clientes americanos sem travar pela primeira vez. Tudo online, na minha hora. Me senti capaz."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👨</div>
+          <div>
+            <div class="testimonial-name">Rafael M.</div>
+            <div class="testimonial-role">Engenheiro de Software · Campinas</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Tentei várias escolas antes. A Dream foi a única com foco real em conversação e ainda assim online, o que encaixou na minha rotina."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👩</div>
+          <div>
+            <div class="testimonial-name">Beatriz L.</div>
+            <div class="testimonial-role">Advogada · Rio de Janeiro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contato">
+  <div class="cta-content">
+    <img src="logo.png" alt="Dream English School" class="cta-logo">
+    <h2 class="cta-h2">Seu sonho está esperando<br>por uma conversa.</h2>
+    <p class="cta-desc">Agende uma aula experimental gratuita e experimente o método conversacional da Dream — 100% online, sem compromisso.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5531984113604" class="btn-white">Aula grátis — agendar agora</a>
+      <a href="https://wa.me/5531984113604" class="btn-outline-white">💬 Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <img src="logo.png" alt="Dream English School" class="footer-logo">
+    <div class="footer-tagline">"Destrave os seus sonhos com o poder da educação"</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Dream English School · 100% Online</div>
+</footer>
+
+</body>
+</html>
