@@ -36,6 +36,9 @@
   .nav-links a:hover { color: white; }
   .nav-cta { background: var(--grad); color: white; font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; padding: 10px 24px; border-radius: 30px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,76,245,0.35); transition: opacity 0.2s, transform 0.2s; }
   .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+  .nav-cta-ghost { color: rgba(255,255,255,0.7); font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: 30px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: color 0.2s, border-color 0.2s; }
+  .nav-cta-ghost:hover { color: white; border-color: rgba(255,255,255,0.5); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
 
   /* HERO */
   .hero { min-height: 100vh; background: var(--midnight); position: relative; overflow: hidden; display: flex; align-items: center; padding: 120px 60px 80px; }
@@ -162,7 +165,10 @@
     <li><a href="#depoimentos">Depoimentos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a href="#contato" class="nav-cta">Quero me matricular</a>
+  <div class="nav-actions">
+    <a href="https://app.dreamenglishschool.com.br/" class="nav-cta-ghost">Área do Aluno</a>
+    <a href="#contato" class="nav-cta">Quero me matricular</a>
+  </div>
 </nav>
 
 <!-- HERO -->
